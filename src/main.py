@@ -33,7 +33,9 @@ def main():
     for line in lines:
         parts = line.split('|')
         category = parts[0] if parts else line
-        if 'important' in category or 'action required' in category:
+        priority = parts[1] if len(parts) > 1 else ''
+        if ('important' in category or 'action required' in category
+                or 'interview' in category or 'p1' in priority):
             for j, email in enumerate(emails):
                 if f"email {j+1}" in category:
                     important_emails.append(emails[j])
